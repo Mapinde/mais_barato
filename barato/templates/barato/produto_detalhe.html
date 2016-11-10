@@ -1,0 +1,58 @@
+{% extends 'barato/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% if produto %}
+<div class="container">
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				{% for prod in produto %}
+				<div class="col-md-3">
+					<div class="img">
+						<img src="{% static 'barato/images/' %}{{prod.imagem}}" class="imagemtop">
+					</div>
+				</div>
+				<div class="col-md-9">
+					<h1>{{ prod.nome_long }}</h1>
+					<p class="lead">{{ prod.descricao|truncatechars:200 }}</p>
+					<h3 class="preco_destaque">{{ prod.preco }}<span class="moeda">MT</span></h3>
+
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% if produto_relacionados %}
+<div class="col-md-12 col-xs-12 col-sm-12 ">
+	<div class="list__container card">
+		<ul class="offers-list__items">
+	{% for produtoloja in produto_relacionados %}
+
+			<li class="offers-list__item">
+				<div class="row lista_produto">
+					<div class="col-md-2 product-offers__image" ><a href="/produto/{{produtoloja.nome}}/{{produtoloja.pk}}"><img src="{% static 'barato/images/'%}{{produtoloja.imagem}}" class="mini_imagem"></a></div>
+					<div class="col-md-2 product-offers__image " style="padding: 30px 10px 10px 70px;"><img src="{% static 'barato/images/walmart.gif' %}" alt="{{ produtoloja.loja }}" class="mini50_imagem text-md-center"></div>
+					<div class="col-md-2 " style="padding: 50px 25px 10px 80px;"><h3 class="preco card-title text-md-center">{{ produtoloja.preco }}<span class="moeda">MT</span></h3></div>
+					<div class="col-md-2" style="padding: 50px 50px 0px 60px;">
+						<a href="/">Ver loja</a>
+					</div>
+					<div class="col-md-4 pull-md-right product-offers__image" style="padding: 10px 50px 0px 10px;">
+						<p>{{ produtoloja.descricao|truncatechars:100 }}</p>
+					</div>
+				</div>
+			</li>
+
+	{% endfor %}
+
+		</ul>
+	</div>
+</div>
+{% else %}
+	<p class="text-capitalize text-info text-md-center"> nao encontrado... </p>
+{% endif %}
+
+{% endblock content %}

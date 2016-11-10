@@ -1,0 +1,46 @@
+{% extends 'barato/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="img">
+                        <img src="{% static 'barato/images/perfume.jpg' %}" class="imagemtop">
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <h1>La Vie Est Belle</h1>
+                    <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% if produtos %}
+
+	{% for produto in produtos %}
+        <div class="col-sm-4 col-md-4 produto">
+            <a href="/produto/{{ produto.nome }}/{{ produto.pk }}/"><div class="thumbnail card">
+                <img src="{% static 'barato/images/' %}{{produto.imagem}}" class="img-rounded imagem" alt="Laptop">
+                <div class="caption card-block">
+                    <h4 class="nome_produto card-title"> {{ produto.nome_long }}</h4>
+                    <br/>
+                    <h3 class="preco card-title">{{ produto.preco }}<span class="moeda">MT</span></h3>
+
+
+                </div>
+            </div></a>
+        </div>
+
+	{% endfor %}
+
+{% else %}
+	<p>Nao dispoe de nenhum produto cadastrado no sistema.</p>
+{% endif %}
+
+{% endblock content %}
