@@ -1,0 +1,20 @@
+{% extends 'barato/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="row">
+    <p class="h1">As Marcas que fazem a diferenca</p>
+    {% for fornecedor in fornecedores %}
+    <div class="col-sm-3 col-md-3 center-block">
+        <div class="card">
+          <div class="card-block">
+            <p class="card-text">{{fornecedor.slogan}}</p>
+          </div>
+          <img src="{% static 'barato/images/' %}{{fornecedor.logo}}" alt="{{fornecedor.nome}}">
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'barato/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 col-sx-12">
+        <p class="h1">Fale Connosco</p>
+            <form method="POST" class="post-form">{% csrf_token %}
+                <div class="form-group">
+                    <label for="id_assunto">Assunto:</label>
+                    <input type="text" class="form-control" id="id_assunto" aria-describedby="subjectHelp" name="subject" placeholder="Assunto do email">
+                    <small id="subjectHelp" class="form-text text-muted">ex: quero publicar os meus artigos nesse site</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_corpo">Mensagem:</label>
+                    <textarea class="form-control" id="id_corpo" rows="3" name="message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="id_email">Email:</label>
+                    <input type="email" class="form-control" id="id_email" name="sender" aria-describedby="emailHelp" placeholder="Inserir o seu email">
+                    <small id="emailHelp" class="form-text text-muted">nos nunca vamos partilhar o seu email com ninguem</small>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" name="cc_myself">
+                      Desejo receber o mesmo email
+                    </label>
+                </div>
+                <button type="submit" class="save btn btn-default">Enviar</button>
+            </form>
+
+    </div>
+</div>
+
+{% endblock %}
