@@ -11,7 +11,7 @@
 				{% for prod in produto %}
 				<div class="col-md-3">
 					<div class="img">
-						<img src="{% static 'barato/images/' %}{{prod.imagem}}" class="imagemtop">
+						<img src="{% static 'barato/images/' %}{{prod.imagem}}" class="imagemtop" alt="{{ prod.nome_long }}" id="image">
 					</div>
 				</div>
 				<div class="col-md-9">
@@ -29,18 +29,18 @@
 {% if produto_relacionados %}
 <div class="col-md-12 col-xs-12 col-sm-12 ">
 	<div class="list__container card">
-		<ul class="offers-list__items">
+		<ul class="offers-list__items" id="images">
 	{% for produtoloja in produto_relacionados %}
 
 			<li class="offers-list__item">
 				<div class="row lista_produto">
-					<div class="col-md-2 product-offers__image" ><a href="/produto/{{produtoloja.nome}}/{{produtoloja.pk}}"><img src="{% static 'barato/images/'%}{{produtoloja.imagem}}" class="mini_imagem"></a></div>
-					<div class="col-md-2 product-offers__image " style="padding: 30px 10px 10px 70px;"><img src="{% static 'barato/images/walmart.gif' %}" alt="{{ produtoloja.loja }}" class="mini50_imagem text-md-center"></div>
-					<div class="col-md-2 " style="padding: 50px 25px 10px 80px;"><h3 class="preco card-title text-md-center">{{ produtoloja.preco }}<span class="moeda">MT</span></h3></div>
-					<div class="col-md-2" style="padding: 50px 50px 0px 60px;">
+					<div class="col-md-2 col-sm-12 product-offers__image" ><a href="/produto/{{produtoloja.nome}}/{{produtoloja.pk}}"><img src="{% static 'barato/images/'%}{{produtoloja.imagem}}" class="mini_imagem"></a></div>
+					<div class="col-md-2 col-sm-12 product-offers__image " style="padding: 30px 10px 10px 70px;"><img src="{% static 'barato/images/walmart.gif' %}" alt="{{ produtoloja.loja }}" class="mini50_imagem"></div>
+					<div class="col-md-2 col-sm-12 " style="padding: 50px 25px 10px 80px;"><h3 class="preco card-title text-md-center">{{ produtoloja.preco }}<span class="moeda">MT</span></h3></div>
+					<div class="col-md-2 col-sm-12"  style="padding: 50px 50px 0px 60px;">
 						<a href="/">Ver loja</a>
 					</div>
-					<div class="col-md-4 pull-md-right product-offers__image" style="padding: 10px 50px 0px 10px;">
+					<div class="col-md-4 col-sm-12 pull-md-right product-offers__image" style="padding: 10px 50px 0px 10px;">
 						<p>{{ produtoloja.descricao|truncatechars:100 }}</p>
 					</div>
 				</div>

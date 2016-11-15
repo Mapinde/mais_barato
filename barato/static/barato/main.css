@@ -45,10 +45,10 @@ html{
 .preco{
     font-size: 22px;
     line-height: 1;
-    color: #2189e0;
+    color: #1d2120;
 }
 .preco:hover{
-    color: #89bdd3;
+    color: #22264b;
 }
 .thumbnail{
     padding: 20px 20px;
@@ -172,4 +172,10 @@ ul, ol {
 .produto a:hover, .produto a:focus{
     text-decoration: none;
 }
+.produto{
+    height: 380px;
+    font-size: 13px;
+}
+
+
 

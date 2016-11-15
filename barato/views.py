@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Produto
+from .models import Produto, Fornecedor, Marca
 from django.utils import timezone
 import datetime
 from django.template.response import TemplateResponse
+from .forms import SearchForm, ContactForm
+from django.core.mail import send_mail
 from django.template import loader
 from django.http import HttpResponse
 
@@ -30,9 +32,6 @@ def produto_lista(request):
 def sobre_nos(request):
     return render(request, 'barato/sobre_nos.html', {})
 
-def contact_us(request):
-    return render(request, 'barato/produto_list.html', {})
-
 
 def produto_detalhe(request, pro_nome,pk):
     endereco_cliente = request.META['REMOTE_ADDR']
@@ -50,4 +49,35 @@ def produto_detalhe(request, pro_nome,pk):
         'produto':produto,
     }
     return HttpResponse(template.render(context, request))
+
+
+def ver_fornecedor(request):
+    fornecedores = Fornecedor.objects.all()
+    template = loader.get_template('barato/fornecedores.html')
+    context = {
+        'fornecedores': fornecedores,
+    }
+    return HttpResponse(template.render(context, request))
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
+
+            recipients = ['onelio.mapinde@gmail.com']
+            if cc_myself:
+                recipients.append(sender)
+            send_mail(subject, message, sender, recipients)
+    else:
+        form = ContactForm()
+
+	template = loader.get_template('barato/contact.html')
+	context = {
+		'form': form,
+	}
+	return HttpResponse(template.render(context, request))
 

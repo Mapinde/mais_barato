@@ -7,4 +7,5 @@ urlpatterns = [
    # url(r'^Produto/(?P<pk>[0-9]+)/$', views.post_detail, name='produto_detalhe'),
     url(r'^sobre/$', views.sobre_nos, name='sobre_nos'),
     url(r'^contact/$', views.contact_us, name='contact_us'),
+    url(r'^fornecedores/$', views.ver_fornecedor, name='ver_fornecedor'),
 ]

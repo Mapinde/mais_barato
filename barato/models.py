@@ -8,6 +8,8 @@ class Fornecedor(models.Model):
     nome = models.CharField(max_length=128)
     localizacao = models.CharField(max_length=128)
     logo = models.CharField(max_length=100)
+    slogan = models.CharField(max_length=100, default="Compre mais por menos")
+    website = models.CharField(max_length=50, default="www.time2work.net")
     contacto = models.CharField(max_length=10)
     email = models.EmailField()
     data_criacao = models.DateField(default=timezone.now)
@@ -27,3 +29,12 @@ class Produto(models.Model):
 
     def __unicode__(self):  # __unicode__ on Python 2
         return self.nome_long
+
+class Marca(models.Model):
+    nome = models.CharField(max_length=30)
+    imagem = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.nome
+
+

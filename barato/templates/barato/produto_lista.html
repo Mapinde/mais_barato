@@ -2,13 +2,13 @@
 {% load staticfiles %}
 {% block content %}
 
-<div class="container">
+
     <div class="jumbotron">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <div class="img">
-                        <img src="{% static 'barato/images/perfume.jpg' %}" class="imagemtop">
+                        <img src="{% static 'barato/images/perfume.jpg' %}" class="imagemtop" id="image" alt="">
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -20,22 +20,21 @@
         </div>
 
     </div>
-</div>
+
 {% if produto_lista %}
     <div class="row">
 	{% for produto in produto_lista %}
 
-        <div class="col-sm-4 col-md-4 produto">
-            <a href="/produto/{{ produto.nome }}/{{ produto.pk }}/"><div class="thumbnail card">
-                <img src="{% static 'barato/images/' %}{{produto.imagem}}" class="img-rounded imagem" alt="Laptop">
-                <div class="caption card-block">
-                    <h4 class="nome_produto card-title"> {{ produto.nome_long }}</h4>
-                    <br/>
-                    <h3 class="preco card-title">{{ produto.preco }}<span class="moeda">MT</span></h3>
-
-
-                </div>
+        <div class="col-sm-6 col-md-5 col-lg-3 col-xs-12 produto">
+            <a href="/produto/{{ produto.nome }}/{{ produto.pk }}/"><div class="card thumbnail">
+                  <img class="card-img-top imagem" src="{% static 'barato/images/' %}{{produto.imagem}}"
+                       alt="{{produto.nome_long}}">
+                  <div class="card-block">
+                    <p class="nome_produto card-text">{{ produto.nome_long|truncatechars:43 }}</p>
+                    <h4 class="preco card-title">{{ produto.preco }}<span class="moeda">MT</span></h4>
+                  </div>
             </div></a>
+
         </div>
 
 	{% endfor %}

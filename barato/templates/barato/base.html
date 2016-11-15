@@ -17,11 +17,20 @@
     <link href="{% static 'barato/css/main.css' %}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{% static 'barato/css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'barato/plugin/Viewer/dist/viewer.css' %}"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{% static 'barato/plugin/Viewer/dist/viewer.js' %}"></script>
   <script>
+  $( function(){
+    var options = {};
+    var viewer;
+    viewer = new Viewer(document.getElementById('image'), options);
+
+  });
+
   $( function() {
     var availableTags = [
       "feijao",
@@ -60,21 +69,22 @@
 <div class="pos-f-t">
     <div class="navbar navbar-light bg-faded navbar-static-top">
         <div class="row header">
-            <div class="col-xs-4 col-sm-2">
-                <a class="navbar-brand" href="/"><img src="{% static 'barato/images/logo.png' %}"></a>
+            <div class="col-md-3 col-sm-3 ">
+
+                <a class="navbar-brand hidden-sm-down" href="/"><img src="{% static 'barato/images/logo.png' %}"></a>
             </div>
-            <div class="col-xs-8 col-md-6 col-sm-4 form-inline col-centered">
-		<form method="POST" name="ProcuraForm" >
-		{% csrf_token %}
-                <div class="input-group">
-                    <input type="text" class="form-control" id="id_search_text" placeholder="Digite Produto, marca ou modelo" name="search_text">
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="submit" >Procurar</button>
-                    </span>
-                </div>
-		</form>
+            <div class="col-md-6 col-sm-6  form-inline col-centered">
+                <form method="POST" name="ProcuraForm" >
+                {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="id_search_text" placeholder="Digite Produto, marca ou modelo" name="search_text">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="submit" >Procurar</button>
+                            </span>
+                        </div>
+                </form>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-4">
+            <div class="col-md-3 col-sm-3">
 
             </div>
         </div>
@@ -94,14 +104,15 @@
     <div class="col-lg-12">
       <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked">
+            <li><a href="/" class="hidden-lg-up">Home</a></li>
           <li><a href="{% url 'sobre_nos' %}">Sobre Nós</a></li>
           <li><a href="{% url 'contact_us' %}">Fale connosco</a></li>
         </ul>
       </div>
       <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked">
-          <li><a href="#">Marcas</a></li>
-          <li><a href="#">Lojas</a></li>
+          <li><a href="">Marcas</a></li>
+          <li><a href="{% url 'ver_fornecedor' %}">Lojas</a></li>
         </ul>
       </div>
       <div class="col-md-3">
@@ -123,7 +134,7 @@
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills nav-justified">
-                <li><a href="/barato">© {% now "Y" %} + Barato.</a></li>
+                <li><a href="/">© {% now "Y" %} + Barato.</a></li>
             </ul>
         </div>
     </div>
